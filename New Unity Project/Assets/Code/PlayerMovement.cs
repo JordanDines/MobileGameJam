@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	private bool tap;
-	private Vector2 startTouch;
-	private int playerMove = 15;
 	int playerPos = 1;
 	public GameObject myPlayer;
-	Vector3 middlePos = Vector3.zero;
+	public GameObject myButton0;
+	public GameObject myButton1;
+	public GameObject myButton2;
+	public Transform left;
+	public Transform right;
+	public Transform mid;
+	float speed = 10;
+	public bool isMovingLeft;
+	public bool isMovingMid;
+	public bool isMovingRight;
 	void Awake()
 	{
 		
@@ -24,23 +30,62 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+		if(isMovingLeft == true)
+		{
+			leftButton();
+		}
+		if (isMovingMid == true)
+		{
+			middleButton();
+		}
+		if (isMovingRight == true)
+		{
+			rightButton();
+		}
 	}
 	public void leftButton()
 	{
-		playerPos = 0;
-		myPlayer.transform.position = new Vector3 (-playerMove, 2.5f, 0);
+		isMovingLeft = true;
+
+		myButton1.SetActive(false);
+		myButton2.SetActive(false);
+
+		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, left.transform.position, speed * Time.deltaTime);
+		if(myPlayer.transform.position == left.transform.position)
+		{
+
+			isMovingLeft = false;
+			myButton1.SetActive(true);
+			myButton2.SetActive(true);
+		}
 	}
 	public void middleButton()
 	{
-		playerPos = 1;
-		myPlayer.transform.position = new Vector3(0, 2.5f, 0);
+		isMovingMid = true;
+
+		myButton0.SetActive(false);
+		myButton2.SetActive(false);
+
+		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, mid.transform.position, speed * Time.deltaTime);
+		if (myPlayer.transform.position == mid.transform.position)
+		{
+			isMovingMid = false;
+			myButton0.SetActive(true);
+			myButton2.SetActive(true);
+		}
 	}
 	public void rightButton()
 	{
-		playerPos = 2;
-		myPlayer.transform.position = new Vector3(playerMove, 2.5f, 0);
+		isMovingRight = true;
+		myButton0.SetActive(false);
+		myButton1.SetActive(false);
+
+		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, speed * Time.deltaTime);
+		if (myPlayer.transform.position == right.transform.position)
+		{
+			isMovingRight = false;
+			myButton0.SetActive(true);
+			myButton1.SetActive(true);
+		}
 	}
-
-
 }
