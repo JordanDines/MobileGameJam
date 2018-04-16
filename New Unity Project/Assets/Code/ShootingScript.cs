@@ -10,14 +10,17 @@ public class ShootingScript : MonoBehaviour {
 	public GameObject m_CrossBowBoltPrefab;
 	[SerializeField]
 	public Transform spawnPos;
+	[SerializeField]
+	public float m_FireRate;
+	private float m_FireCooldown;
 	// Use this for initialization
 	void Start () {
-		
+		m_FireCooldown = m_FireRate;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		m_FireCooldown += Time.deltaTime;
 	}
 
 	public void Shoot()
@@ -26,7 +29,17 @@ public class ShootingScript : MonoBehaviour {
 
 		if(Physics.Raycast(m_Player.transform.position, fwd, 10))
 		{
-			GameObject CrossBowBolt = (GameObject)Instantiate(m_CrossBowBoltPrefab, spawnPos.position, transform.rotation);
+			if (m_FireCooldown >= m_FireRate)
+			{
+				GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
+				if (bullet != null)
+				{
+					bullet.transform.position = spawnPos.transform.position;
+					bullet.transform.rotation = spawnPos.transform.rotation;
+					bullet.SetActive(true);
+				}
+				m_FireCooldown = 0;
+			}
 		}
 	}
 }
