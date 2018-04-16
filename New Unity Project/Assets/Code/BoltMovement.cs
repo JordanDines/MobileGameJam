@@ -11,13 +11,14 @@ public class BoltMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position += transform.up * m_fSpeed * Time.deltaTime;
+		transform.position += transform.forward * m_fSpeed * Time.deltaTime;
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
+			ScoreManager.score++;
 			gameObject.SetActive(false);
 			Destroy(collision.gameObject);
 		}
