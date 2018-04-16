@@ -9,7 +9,7 @@ public class ShootingScript : MonoBehaviour {
 	[SerializeField]
 	public GameObject m_CrossBowBoltPrefab;
 	[SerializeField]
-	public GameObject m_CrossBow;
+	public Transform spawnPos;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,7 +26,7 @@ public class ShootingScript : MonoBehaviour {
 
 		if(Physics.Raycast(m_Player.transform.position, fwd, 10))
 		{
-			GameObject CrossBowBolt = (GameObject)Instantiate(m_CrossBowBoltPrefab, m_Player.transform.position, transform.rotation);
+			GameObject CrossBowBolt = (GameObject)Instantiate(m_CrossBowBoltPrefab, spawnPos.position, transform.rotation);
 		}
 	}
 }

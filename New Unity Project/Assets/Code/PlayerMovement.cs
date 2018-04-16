@@ -10,9 +10,12 @@ public class PlayerMovement : MonoBehaviour
 	int playerPos = 1;
 	public GameObject myPlayer;
 	Vector3 middlePos = Vector3.zero;
+	public Transform right;
+	float speed = 10;
+	float timer;
 	void Awake()
 	{
-		
+		timer = Time.deltaTime;
 	}
 
 	// Use this for initialization
@@ -38,8 +41,11 @@ public class PlayerMovement : MonoBehaviour
 	}
 	public void rightButton()
 	{
+		float step = speed * timer;
 		playerPos = 2;
-		myPlayer.transform.position = new Vector3(playerMove, 2.5f, 0);
+		//myPlayer.transform.position = new Vector3(playerMove, 2.5f, 0);
+		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, step);
 	}
+
 
 }
