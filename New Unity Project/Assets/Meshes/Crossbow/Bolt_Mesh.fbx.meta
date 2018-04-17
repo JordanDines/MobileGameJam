@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: 3da61c334c0c45f4fbc0074145333c75
-timeCreated: 1523861318
+guid: 0f00c2aa143b611419ab2b00295a62c5
+timeCreated: 1523945448
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: EnvironmentMat
+    2100000: Bolt5
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Floor
+    4300000: Bolt
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -85,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
