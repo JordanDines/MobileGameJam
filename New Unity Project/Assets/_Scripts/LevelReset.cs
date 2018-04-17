@@ -22,5 +22,9 @@ public class LevelReset : MonoBehaviour {
 		{
 			other.gameObject.transform.position = TeleportLocation.transform.position;
 		}
+		if(other.gameObject.tag == "Enemy")
+		{
+			other.gameObject.SetActive(false);
+		}
 	}
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	int playerPos = 1;
 	public GameObject myPlayer;
 	public GameObject myButton0;
 	public GameObject myButton1;
@@ -16,9 +15,20 @@ public class PlayerMovement : MonoBehaviour
 	public bool isMovingLeft;
 	public bool isMovingMid;
 	public bool isMovingRight;
+
+	[SerializeField]
+	private GameObject m_Player;
+	[SerializeField]
+	private GameObject m_CrossBowBoltPrefab;
+	[SerializeField]
+	private Transform spawnPos;
+	
+	public float m_FireRate;
+	private float m_FireCooldown;
+
 	void Awake()
 	{
-		
+		m_FireCooldown = m_FireRate;
 	}
 
 	// Use this for initialization
@@ -30,7 +40,10 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if(isMovingLeft == true)
+		m_FireCooldown += Time.deltaTime;
+
+
+		if (isMovingLeft == true)
 		{
 			leftButton();
 		}
@@ -53,10 +66,10 @@ public class PlayerMovement : MonoBehaviour
 		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, left.transform.position, speed * Time.deltaTime);
 		if(myPlayer.transform.position == left.transform.position)
 		{
-
-			isMovingLeft = false;
+			Shoot();
 			myButton1.SetActive(true);
 			myButton2.SetActive(true);
+			isMovingLeft = false;
 		}
 	}
 	public void middleButton()
@@ -69,9 +82,10 @@ public class PlayerMovement : MonoBehaviour
 		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, mid.transform.position, speed * Time.deltaTime);
 		if (myPlayer.transform.position == mid.transform.position)
 		{
-			isMovingMid = false;
+			Shoot();
 			myButton0.SetActive(true);
 			myButton2.SetActive(true);
+			isMovingMid = false;
 		}
 	}
 	public void rightButton()
@@ -83,9 +97,26 @@ public class PlayerMovement : MonoBehaviour
 		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, speed * Time.deltaTime);
 		if (myPlayer.transform.position == right.transform.position)
 		{
-			isMovingRight = false;
+			Shoot();
 			myButton0.SetActive(true);
 			myButton1.SetActive(true);
+			isMovingRight = false;
 		}
+	}
+
+	public void Shoot()
+	{
+		if (m_FireCooldown >= m_FireRate)
+		{
+			GameObject bullet = ObjectPool.SharedInstance.GetPooledObject("Bullet");
+			if (bullet != null)
+			{
+				bullet.transform.position = spawnPos.transform.position;
+				bullet.transform.rotation = spawnPos.transform.rotation;
+				bullet.SetActive(true);
+			}
+			m_FireCooldown = 0;
+		}
+		
 	}
 }

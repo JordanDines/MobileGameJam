@@ -10,7 +10,8 @@ public class BoltMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		transform.position += transform.forward * m_fSpeed * Time.deltaTime;
 	}
 
@@ -20,7 +21,7 @@ public class BoltMovement : MonoBehaviour {
 		{
 			ScoreManager.score++;
 			gameObject.SetActive(false);
-			Destroy(collision.gameObject);
+			collision.gameObject.SetActive(false);
 		}
 		else
 		{

@@ -2,38 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour {
+[System.Serializable]
+public class ObjectPoolItem
+{
+  public int amountToPool;
+  public GameObject objectToPool;
+  public bool shouldExpand;
+}
 
+public class ObjectPool : MonoBehaviour
+{
+
+	public List<ObjectPoolItem> itemsToPool;
 	public static ObjectPool SharedInstance;
+	public bool shouldExpand;
 	public List<GameObject> pooledObjects;
-	public GameObject objectToPool;
-	public int amountToPool;
+	private GameObject objectToPool;
 
 	// Use this for initialization
 	void Awake () {
 		SharedInstance = this;
 	}
 
-	private void Start()
+	void Start()
 	{
 		pooledObjects = new List<GameObject>();
-		for (int i = 0; i < amountToPool; i++)
+		foreach (ObjectPoolItem item in itemsToPool)
 		{
-			GameObject obj = (GameObject)Instantiate(objectToPool);
-			obj.SetActive(false);
-			pooledObjects.Add(obj);
+			for (int i = 0; i < item.amountToPool; i++)
+			{
+				GameObject obj = (GameObject)Instantiate(item.objectToPool);
+				obj.SetActive(false);
+				pooledObjects.Add(obj);
+			}
 		}
 	}
 
-	public GameObject GetPooledObject()
+	public GameObject GetPooledObject(string tag)
 	{
 		for (int i = 0; i < pooledObjects.Count; i++)
 		{
-			if (!pooledObjects[i].activeInHierarchy)
+			if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag == tag)
 			{
 				return pooledObjects[i];
 			}
 		}
-		return null;
+		foreach (ObjectPoolItem item in itemsToPool)
+		{
+			if (item.objectToPool.tag == tag)
+			{
+				if (item.shouldExpand)
+				{
+					GameObject obj = (GameObject)Instantiate(item.objectToPool);
+					obj.SetActive(false);
+					pooledObjects.Add(obj);
+					return obj;
+				}
+			}
+		}
+		if (shouldExpand)
+		{
+			GameObject obj = (GameObject)Instantiate(objectToPool);
+			obj.SetActive(false);
+			pooledObjects.Add(obj);
+			return obj;
+		}
+		else
+		{
+			return null;
+		};
 	}
 }
