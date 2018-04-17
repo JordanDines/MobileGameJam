@@ -13,6 +13,6 @@ public class TextureOffset : MonoBehaviour {
 
 	void Update () {
 		float offset = Time.time * scrollSpeed;
-		rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+		rend.material.SetTextureOffset("_MainTex", new Vector3(0, offset, 0));
 	}
 }
