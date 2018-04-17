@@ -25,23 +25,15 @@ public class ObjectPool : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public GameObject GetPooledObject()
 	{
-		//1
 		for (int i = 0; i < pooledObjects.Count; i++)
 		{
-			//2
 			if (!pooledObjects[i].activeInHierarchy)
 			{
 				return pooledObjects[i];
 			}
 		}
-		//3   
 		return null;
 	}
 }
