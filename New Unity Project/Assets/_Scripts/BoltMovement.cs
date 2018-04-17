@@ -23,9 +23,10 @@ public class BoltMovement : MonoBehaviour {
 			gameObject.SetActive(false);
 			collision.gameObject.SetActive(false);
 		}
-		else
-		{
+
+	}
+
+	private void OnTriggerEnter (Collider other){
 			gameObject.SetActive(false);
-		}
 	}
 }

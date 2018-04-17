@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class TextureOffset : MonoBehaviour {
 
-	public float scrollSpeed = 0.5f;
-	public Renderer rend;
-
+	private Renderer rend;
+	private LevelMove lr;
 	void Start(){
+		lr = FindObjectOfType<LevelMove> ();
 		rend = GetComponent<Renderer> ();
 	}
 
 	void Update () {
-		float offset = Time.time * scrollSpeed;
-		rend.material.SetTextureOffset("_MainTex", new Vector3(0, offset, 0));
+		Debug.Log (lr.m_fSpeed);
+		float offset = Time.time * lr.m_fSpeed;
+		rend.material.SetTextureOffset("_MainTex", new Vector3(0, (offset * .1f), 0));
 	}
 }

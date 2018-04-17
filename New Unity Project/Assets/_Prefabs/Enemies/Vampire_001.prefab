@@ -36,9 +36,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4956046485697900}
+  - component: {fileID: 114115364945902298}
   m_Layer: 0
   m_Name: Vampire_001
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,6 +161,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114115364945902298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146451203001422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b655bf9f5aa4a5d4f864d6820e1fbc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
 --- !u!198 &198431256854848854
 ParticleSystem:
   m_ObjectHideFlags: 1
