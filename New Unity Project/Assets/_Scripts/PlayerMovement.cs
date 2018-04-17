@@ -8,12 +8,15 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject myButton0;
 	public GameObject myButton1;
 	public GameObject myButton2;
-	public Transform left;
-	public Transform right;
-	public Transform mid;
-	float speed = 10;
+	//public Transform[] playerTransforms;
+
+	private TransformManager tm;
+	float movetime = 0.5f;
+	float movetimer = 0.0f;
+	int currentTransform;
+	float speed = 10.0f;
 	public bool isMovingLeft;
-	public bool isMovingMid;
+	public bool canShoot;
 	public bool isMovingRight;
 
 	[SerializeField]
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Awake()
 	{
+		tm = FindObjectOfType<TransformManager>();
 		m_FireCooldown = m_FireRate;
 	}
 
@@ -41,82 +45,148 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
 	{
 		m_FireCooldown += Time.deltaTime;
-
-
+		
+		Debug.Log(tm.currentTransform);
 		if (isMovingLeft == true)
 		{
-			leftButton();
+			MoveLeft();
 		}
-		if (isMovingMid == true)
+		if (canShoot == true)
 		{
 			middleButton();
 		}
 		if (isMovingRight == true)
 		{
-			rightButton();
+			MoveRight();
 		}
 	}
+
 	public void leftButton()
 	{
+
 		isMovingLeft = true;
-
-		myButton1.SetActive(false);
-		myButton2.SetActive(false);
-
-		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, left.transform.position, speed * Time.deltaTime);
-		if(myPlayer.transform.position == left.transform.position)
+		movetimer = 0;
+		if (tm.currentTransform > 0)
 		{
-			Shoot();
-			myButton1.SetActive(true);
-			myButton2.SetActive(true);
-			isMovingLeft = false;
+			tm.currentTransform--;
 		}
+		//myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, tm.playerTransforms[tm.currentTransform].position, speed * Time.deltaTime);
+		//
+		//if (myPlayer.transform.position == tm.playerTransforms[tm.currentTransform].position)
+		//{
+		//	isMovingLeft = false;
+		//}
+
+
+		//isMovingLeft = true;
+
+		//myButton1.SetActive(false);
+		//myButton2.SetActive(false);
+
+		//myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, left.transform.position, speed * Time.deltaTime);
+		//if(myPlayer.transform.position == left.transform.position)
+		//{
+		//	myButton1.SetActive(true);
+		//	myButton2.SetActive(true);
+		//	isMovingLeft = false;
+		//}
 	}
 	public void middleButton()
 	{
-		isMovingMid = true;
 
-		myButton0.SetActive(false);
-		myButton2.SetActive(false);
+		//if(isMovingRight == false && isMovingLeft == false)
+		Shoot();
 
-		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, mid.transform.position, speed * Time.deltaTime);
-		if (myPlayer.transform.position == mid.transform.position)
-		{
-			Shoot();
-			myButton0.SetActive(true);
-			myButton2.SetActive(true);
-			isMovingMid = false;
-		}
+		
+		//isMovingMid = true;
+
+		//myButton0.SetActive(false);
+		//myButton2.SetActive(false);
+
+		//myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, mid.transform.position, speed * Time.deltaTime);
+		//if (myPlayer.transform.position == mid.transform.position || myPlayer.transform.position == left.transform.position || myPlayer.transform.position == right.transform.position)
+		//{
+		//	Shoot();
+		//	//myButton0.SetActive(true);
+		//	//myButton2.SetActive(true);
+		//	//isMovingMid = false;
+		//}
 	}
 	public void rightButton()
 	{
-		isMovingRight = true;
-		myButton0.SetActive(false);
-		myButton1.SetActive(false);
 
-		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, speed * Time.deltaTime);
-		if (myPlayer.transform.position == right.transform.position)
+		isMovingRight = true;
+		movetimer = 0;
+		if (tm.currentTransform < 2)
 		{
-			Shoot();
-			myButton0.SetActive(true);
-			myButton1.SetActive(true);
+			tm.currentTransform += 1;
+			//transform.position += Vector3.left * speed * Time.deltaTime;
+		}
+
+
+		//isMovingRight = true;
+		//myButton0.SetActive(false);
+		//myButton1.SetActive(false);
+
+		//myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, speed * Time.deltaTime);
+
+		//if(myPlayer.transform.position == left.transform.position)
+		//{
+		//	isMovingRight = true;
+		//}
+
+		////if (myPlayer.transform.position == left.transform.position)
+		////{
+		////	myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, mid.transform.position, speed * Time.deltaTime);
+		////}
+		////if(myPlayer.transform.position == mid.transform.position)
+		////{
+		////	myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, speed * Time.deltaTime);
+		////}
+		////myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, right.transform.position, speed * Time.deltaTime);
+		//if (myPlayer.transform.position == right.transform.position)
+		//{
+		//	myButton0.SetActive(true);
+		//	myButton1.SetActive(true);
+		//	isMovingRight = false;
+		//}
+	}
+	void MoveLeft ()
+	{
+		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, tm.playerTransforms[tm.currentTransform].position, speed * Time.deltaTime);
+
+		if (myPlayer.transform.position == tm.playerTransforms[tm.currentTransform].position)
+		{
+			isMovingLeft = false;
+		}
+	}
+
+	void MoveRight()
+	{
+		myPlayer.transform.position = Vector3.MoveTowards(myPlayer.transform.position, tm.playerTransforms[tm.currentTransform].position, speed * Time.deltaTime);
+
+		if (myPlayer.transform.position == tm.playerTransforms[tm.currentTransform].position)
+		{
 			isMovingRight = false;
 		}
 	}
 
 	public void Shoot()
 	{
-		if (m_FireCooldown >= m_FireRate)
-		{
-			GameObject bullet = ObjectPool.SharedInstance.GetPooledObject("Bullet");
-			if (bullet != null)
+		//if (isMovingLeft == false && isMovingRight)
+		//{ 
+			if (m_FireCooldown >= m_FireRate)
 			{
-				bullet.transform.position = spawnPos.transform.position;
-				bullet.transform.rotation = spawnPos.transform.rotation;
-				bullet.SetActive(true);
+				GameObject bullet = ObjectPool.SharedInstance.GetPooledObject("Bullet");
+				if (bullet != null)
+				{
+					bullet.transform.position = spawnPos.transform.position;
+					bullet.transform.rotation = spawnPos.transform.rotation;
+					bullet.SetActive(true);
+				}
+				m_FireCooldown = 0;
+				canShoot = false;
 			}
-			m_FireCooldown = 0;
-		}
-		
+		//}
 	}
 }

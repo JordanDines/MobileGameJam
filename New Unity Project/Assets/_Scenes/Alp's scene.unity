@@ -245,6 +245,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &704563168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 704563169}
+  - component: {fileID: 704563170}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &704563169
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 704563168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.523164, y: 14.63, z: -3.4111576}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &704563170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 704563168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0f39ed33b50154bbe1fb28c1a0e741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransforms:
+  - {fileID: 2046018641}
+  - {fileID: 1001675789}
+  - {fileID: 789670141}
+  currentTransform: 0
 --- !u!1 &789670140
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +316,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813959068
 GameObject:
@@ -636,17 +681,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &861060885
@@ -697,17 +731,14 @@ MonoBehaviour:
   myButton0: {fileID: 861060882}
   myButton1: {fileID: 1517021795}
   myButton2: {fileID: 897521033}
-  left: {fileID: 2046018641}
-  right: {fileID: 789670141}
-  mid: {fileID: 1001675789}
   isMovingLeft: 0
-  isMovingMid: 0
+  canShoot: 0
   isMovingRight: 0
   m_Player: {fileID: 1159379626}
   m_CrossBowBoltPrefab: {fileID: 1564331654978334, guid: 2d67d9962a9e8414186c5e1c16ecef45,
     type: 2}
   spawnPos: {fileID: 1787965561}
-  m_FireRate: 3
+  m_FireRate: 0.1
 --- !u!1 &897521033
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,17 +826,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &897521036
@@ -856,17 +876,14 @@ MonoBehaviour:
   myButton0: {fileID: 861060882}
   myButton1: {fileID: 1517021795}
   myButton2: {fileID: 897521033}
-  left: {fileID: 2046018641}
-  right: {fileID: 789670141}
-  mid: {fileID: 1001675789}
   isMovingLeft: 0
-  isMovingMid: 0
+  canShoot: 0
   isMovingRight: 0
   m_Player: {fileID: 1159379626}
   m_CrossBowBoltPrefab: {fileID: 1564331654978334, guid: 2d67d9962a9e8414186c5e1c16ecef45,
     type: 2}
   spawnPos: {fileID: 1787965561}
-  m_FireRate: 3
+  m_FireRate: 0.1
 --- !u!1 &958240521
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +996,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159379626
 GameObject:
@@ -1337,17 +1354,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1517021798
@@ -1398,17 +1404,14 @@ MonoBehaviour:
   myButton0: {fileID: 861060882}
   myButton1: {fileID: 1517021795}
   myButton2: {fileID: 897521033}
-  left: {fileID: 2046018641}
-  right: {fileID: 789670141}
-  mid: {fileID: 1001675789}
   isMovingLeft: 0
-  isMovingMid: 0
+  canShoot: 0
   isMovingRight: 0
   m_Player: {fileID: 1159379626}
   m_CrossBowBoltPrefab: {fileID: 1564331654978334, guid: 2d67d9962a9e8414186c5e1c16ecef45,
     type: 2}
   spawnPos: {fileID: 1787965561}
-  m_FireRate: 3
+  m_FireRate: 0.1
 --- !u!1 &1598541961
 GameObject:
   m_ObjectHideFlags: 0
