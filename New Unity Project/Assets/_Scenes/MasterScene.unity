@@ -906,6 +906,7 @@ GameObject:
   - component: {fileID: 642536528}
   - component: {fileID: 642536527}
   - component: {fileID: 642536529}
+  - component: {fileID: 642536530}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -960,8 +961,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 0
 --- !u!222 &642536528
@@ -984,6 +985,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0.48151168, g: 0.24178201, b: 0.63235295, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &642536530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642536525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d067ee981a1f9dd4f886959236fa0875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &700845754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,8 +1890,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.00002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 270, y: -467.5}
-  m_SizeDelta: {x: 249, y: 306.6}
+  m_AnchoredPosition: {x: 285, y: -443.5}
+  m_SizeDelta: {x: 278.9, y: 398.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346872902
 MonoBehaviour:
@@ -2026,8 +2038,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -270, y: -467.5}
-  m_SizeDelta: {x: 249, y: 306.6}
+  m_AnchoredPosition: {x: -285, y: -443.5}
+  m_SizeDelta: {x: 278.9, y: 398.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359672089
 MonoBehaviour:

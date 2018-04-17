@@ -15,18 +15,14 @@ public class BoltMovement : MonoBehaviour {
 		transform.position += transform.forward * m_fSpeed * Time.deltaTime;
 	}
 
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.tag == "Enemy")
+
+	private void OnTriggerEnter (Collider other){
+		if (other.gameObject.tag == "Enemy")
 		{
 			ScoreManager.score++;
 			gameObject.SetActive(false);
-			collision.gameObject.SetActive(false);
+			other.gameObject.SetActive(false);
 		}
-
-	}
-
-	private void OnTriggerEnter (Collider other){
 			gameObject.SetActive(false);
 	}
 }
