@@ -26,10 +26,10 @@ public class ShootingScript : MonoBehaviour {
 
 	public void Shoot()
 	{
-		Vector3 fwd = m_Player.transform.TransformDirection(Vector3.forward);
-
-		if(Physics.Raycast(m_Player.transform.position, fwd, weaponRange))
-		{
+		//Vector3 fwd = m_Player.transform.TransformDirection(Vector3.forward);
+		//
+		//if(Physics.Raycast(m_Player.transform.position, fwd, weaponRange))
+		//{
 			if (m_FireCooldown >= m_FireRate)
 			{
 				GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
@@ -41,6 +41,6 @@ public class ShootingScript : MonoBehaviour {
 				}
 				m_FireCooldown = 0;
 			}
-		}
+		//}
 	}
 }
