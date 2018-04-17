@@ -13,6 +13,7 @@ public class ShootingScript : MonoBehaviour {
 	[SerializeField]
 	public float m_FireRate;
 	private float m_FireCooldown;
+	public float weaponRange;
 	// Use this for initialization
 	void Start () {
 		m_FireCooldown = m_FireRate;
@@ -27,7 +28,7 @@ public class ShootingScript : MonoBehaviour {
 	{
 		Vector3 fwd = m_Player.transform.TransformDirection(Vector3.forward);
 
-		if(Physics.Raycast(m_Player.transform.position, fwd, 10))
+		if(Physics.Raycast(m_Player.transform.position, fwd, weaponRange))
 		{
 			if (m_FireCooldown >= m_FireRate)
 			{

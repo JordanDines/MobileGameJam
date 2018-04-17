@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114828180393886248
 MonoBehaviour:
@@ -111,8 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9547a66cb24c114781a57f35b68649a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fSpeed: 5
-  scoreValue: 0
+  m_fSpeed: 10
 --- !u!136 &136472457043210074
 CapsuleCollider:
   m_ObjectHideFlags: 1
