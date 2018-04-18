@@ -7,7 +7,11 @@ public class EnemyMoveScript : MonoBehaviour
 	public float speed;
 	public float speedUpPoint;
 	public float increaseSpeed;
-	public float nextSpeedUp;
+	[SerializeField]
+	private float nextSpeedUp;
+	[SerializeField]
+	private float maxSpeed;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -17,11 +21,15 @@ public class EnemyMoveScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (ScoreManager.score >= speedUpPoint)
+		transform.position += Vector3.back * speed * Time.deltaTime;
+		if (speed == maxSpeed) {
+			speed = maxSpeed;
+		}
+		 else if (ScoreManager.score >= speedUpPoint)
 		{
 			speed += increaseSpeed;
 			speedUpPoint += nextSpeedUp;
 		}
-		transform.position += Vector3.back * speed * Time.deltaTime;
+
 	}
 }
