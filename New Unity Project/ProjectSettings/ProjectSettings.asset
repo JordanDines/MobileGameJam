@@ -158,6 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.team6.stakedriver
     iOS: com.team6.vampgame
   buildNumber: {}
   AndroidBundleVersionCode: 1
